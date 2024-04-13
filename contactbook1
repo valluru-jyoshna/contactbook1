@@ -1,0 +1,63 @@
+class Contact:
+    def __init__(self, name, phone_number, email, address):
+        self.name = name
+        self.phone_number = phone_number
+        self.email = email
+        self.address = address
+
+class ContactList:
+    def __init__(self):
+        self.contacts = []
+
+    def add_contact(self, contact):
+        self.contacts.append(contact)
+
+    def view_contacts(self):
+        if self.contacts:
+            for idx, contact in enumerate(self.contacts):
+                print(f"{idx + 1}. Name: {contact.name}, Phone: {contact.phone_number}")
+        else:
+            print("No contacts found.")
+
+    def search_contact(self, search_term):
+        found_contacts = []
+        for contact in self.contacts:
+            if search_term.lower() in contact.name.lower() or search_term in contact.phone_number:
+                found_contacts.append(contact)
+        return found_contacts
+
+    def update_contact(self, index, name, phone_number, email, address):
+        if index < len(self.contacts):
+            self.contacts[index].name = name
+            self.contacts[index].phone_number = phone_number
+            self.contacts[index].email = email
+            self.contacts[index].address = address
+            print("Contact updated successfully.")
+        else:
+            print("Invalid contact index.")
+
+    def delete_contact(self, index):
+        if index < len(self.contacts):
+            del self.contacts[index]
+            print("Contact deleted successfully.")
+        else:
+            print("Invalid contact index.")
+
+def main():
+    contact_list = ContactList()
+
+    while True:
+        print("\n1. Add Contact")
+        print("2. View Contacts")
+        print("3. Search Contact")
+        print("4. Update Contact")
+        print("5. Delete Contact")
+        print("6. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            name = input("Enter name: ")
+            phone_number = input("Enter phone number: ")
+            email = input("Enter email: ")
+          
